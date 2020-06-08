@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Master</title>
-</head>
-<body>
-    Hello World !
-</body>
-</html>
+{% extends 'base.html' %}
+
+{%block head%}
+<title>Task Master</title>
+{%endblock%}
+
+{%block body%}
+<div class="content">
+    <h1>Task Master</h1>
+    <p>by Pedro Danna</p>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Created</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a class="del" href="/delete/{{task.id}}">Delete</a>
+                    <a class="up" href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <br>
+        <input type="submit" value="Add Task">
+    </form>
+</div>
+{%endblock%}
