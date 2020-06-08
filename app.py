@@ -21,7 +21,7 @@ class Todo(db.Model):
 
     #Function to return a string when new element is added
     def __repr__(self):
-        return "<Task %r>" % self.id
+        return ""
 
 #App URL
 @app.route('/', methods=['POST', 'GET'])
